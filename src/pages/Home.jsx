@@ -12,7 +12,7 @@ function Home() {
  // state lifting for data sharing , here state is moved to allvideo and change state is for addvideo 
   const [addStatus , setAddStatus] = useState( {})
 
-
+// here state is created in home for category nnu video ne drag cheyth delete akkumbo automaticcally veran vendi/ without refresh category allvideo aayi communicate cheyyanam athinu state lifting use cheythu coz they are sibilings
   const [videoCategoryUpdateStatus , setvideoCategoryUpdateStatus ] = useState( {})
 
 

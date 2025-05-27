@@ -57,10 +57,11 @@ function Allvideos( {addStatus , setvideoCategoryUpdateStatus} ) { //destructure
         console.log(e);
         
 
-
+        // destructure the keys from category section in details
         const { categoryDetails , videoDetails} = details
         //remaining array elements in category video as
         const newArray = categoryDetails.categoryVideo.filter ( (item) => item.id != videoDetails.id )
+        // drag cheytha element remove aaya oru array
 
 
         console.log(newArray);
@@ -71,8 +72,10 @@ function Allvideos( {addStatus , setvideoCategoryUpdateStatus} ) { //destructure
             id : categoryDetails.id
 
         }
+        // here category paranja array ne new array akki mattanu , evde category video key aanu update avunnath  after deleting / removing the dragged video
         const result = await AddVideoCategoryApi(categoryDetails.id , reqBody)
         console.log(result);
+        // without refresh component automatically akkan vendi 
         if(result.status >= 200 && result.status < 300){
             setvideoCategoryUpdateStatus(result.data)
         }
@@ -91,7 +94,8 @@ function Allvideos( {addStatus , setvideoCategoryUpdateStatus} ) { //destructure
     {/* conditional rendering using ternery operator in the case of if video card available or no video */}
 
     { AllVideoDetails?.length>0 ? 
-    <div className="container-fluid" droppable="true" onDragOver={(e) => videoOver(e)} onDrop={(e) => videoDrop(e)} >
+    <div className="container-fluid" droppable="true" onDragOver={(e) => videoOver(e)} onDrop={(e) => videoDrop(e)} > 
+    {/* drop the video from category to allvideo */}
         <div className="row">
 
 

@@ -76,6 +76,7 @@ function Videocard({video , setDeleteVideoStatus , present}) {
     <Card style={{ width: '100%' ,height:''}} className='mt-3' draggable onDragStart={ (e)=>videoDrag( e , video )}>
       { !present && <Card.Img  onClick={handleShow}  variant="top" src={video?.imageurl} height={'300px'}/> }
       <Card.Body className='d-flex justify-content-between' style={{height:'90px'}}>
+        {/* here prent nte value false aneel mathram image ne kanichal mathi to avoid image in category videocard */}
 
         <Card.Text >
           {video?.caption}

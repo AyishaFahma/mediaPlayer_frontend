@@ -71,3 +71,5 @@ export const deleteACategoryApi = async(id) => {
 export const AddVideoCategoryApi = async(id , reqBody) => {
     return await commonApi('PUT' , `${serverUrl}/category/${id}`,reqBody)
 }
+
+// so here category is already there so we are updating the category value as new thats why put req

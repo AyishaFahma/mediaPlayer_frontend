@@ -142,12 +142,13 @@ function Category( {videoCategoryUpdateStatus}) {
       const result = await AddVideoCategoryApi(categoryDetails.id , categoryDetails)
 
       console.log(result);
+      // this will add a perticular video in curresponding category and this can be seen in json server file
       if(result.status >= 200 && result.status < 300){
-        toast.success("Video added Successfully here working")
+        toast.success("Video added Successfully")
         setupdateStatus(result.data)
       }
       else{
-        toast.error("Something went wrong here working")
+        toast.error("Something went wrong")
       }
       
       
@@ -164,12 +165,15 @@ function Category( {videoCategoryUpdateStatus}) {
     // console.log(video);
     // console.log(category);
 
+    // evide category nnu thirich drag cheyyanu video ne 
+
 
     const details = {
       videoDetails : video ,
       categoryDetails : category 
     }
     console.log(details);
+    // ee details ne transfer cheyyanu to allvideo silekk so in allvideos place droppable
     
 
     e.dataTransfer.setData("details" , JSON.stringify(details))
@@ -187,8 +191,8 @@ function Category( {videoCategoryUpdateStatus}) {
 
     <button className='btn btn-warning w-100'  onClick={handleShow} >Add Category</button>
 
-    { AllCategoryDetails?.length>0 ?
-    AllCategoryDetails?.map ( (item, index) => (
+    { AllCategoryDetails?.length > 0 ? // [ {}, {}, {}, .....]
+    AllCategoryDetails?.map ( (item, index) => ( // {} , {} , {} , ...
 
     <div className='p-3 rounded border mt-4' key={index} 
     droppable={true} onDragOver={(e) => videoOver(e)} onDrop={ (e) => videoDrop(e , item)}>
@@ -202,11 +206,20 @@ function Category( {videoCategoryUpdateStatus}) {
 
       {
 
-        item?.categoryVideo?.length > 0 && // [ {}, {}]
+        item?.categoryVideo?.length > 0 && 
+        //  { category name:  ,
+        // categoryvideo: [ {video}, {video} , .....] ,
+        // id: }, 
+        //  {}, .....
 
         item?.categoryVideo?.map( (video , index) => (
 
-          <div key={index} draggable onDragStart={(e) => videoDrag(e , video , item)}>   <Videocard  video={video} present={true}/>   </div>
+          <div key={index} draggable onDragStart={(e) => videoDrag(e , video , item)}> 
+          {/* here categoryil ulla videocard ne thirich allvideo kk drag cheyyanam delete akkan vendeett athinanu ee oru div ne draggable kodthath coz videocard oru div nte ullilanu place cheythath here video = perticular video item= perticular category */}
+            <Videocard  video={video} present={true}/>  
+          </div>
+
+          // here present true akki set cheythath for category yil add cheyyunna videocardinu image um buttonum remove akkan vendi aanu so it will goes into videocard as props destructure 
 
         ))
           
